@@ -13,6 +13,7 @@ export class ShopListComponent implements OnInit {
     ngOnInit() {
         console.log("Inititial State", initialState);
         console.log("Adapter", adapter);
-        
+
+        this.shopService.getAllShops();
     }
 }

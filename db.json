@@ -1,6 +1,9 @@
 {
   "shops": [
-    {"id": 1,
-    "name":"Tesco"}
+    {
+      "id": 1,
+      "name": "Tesco",
+      "address": "Western Avenue"
+    }
   ]
 }
