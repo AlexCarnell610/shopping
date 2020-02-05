@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions } from '@ngrx/store';
-import { Effect, ofType } from '@ngrx/effects'
+import { Effect, ofType, Actions } from '@ngrx/effects'
 import { LoadShops, ShopActionsEnum, LoadShopsSuccess, LoadShopsFail } from '../actions/shop-actions';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
