@@ -15,6 +15,8 @@ export class ShopEffects {
     loadShops$ = this.actions$.pipe(
         ofType<LoadShops>(ShopActionsEnum.LOAD_SHOPS),
         switchMap(() => {
+            console.log("Effect triggered");
+            
             return this.shopService.getAllShops().pipe(
                 map(shops => new LoadShopsSuccess(shops)),
                 catchError(error => of(new LoadShopsFail(error)))

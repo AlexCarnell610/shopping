@@ -14,6 +14,11 @@ export class ShopListComponent implements OnInit {
         console.log("Inititial State", initialState);
         console.log("Adapter", adapter);
 
-        this.shopService.getAllShops();
+        this.shopService.getAllShops().subscribe(ok => {
+            console.log("shops",ok);
+            
+        })
+
+        
     }
 }

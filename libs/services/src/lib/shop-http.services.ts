@@ -10,6 +10,6 @@ export class ShopHttpService {
     constructor(private http: HttpClient){}
 
     public getAllShops(){
-        return this.http.get<Shop[]>('../../../db.json')
+        return this.http.get<Shop[]>('assets/db.json')
     }
 }
