@@ -1,5 +1,5 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -21,12 +21,6 @@
     "paths": {
       "@data-models": [
         "libs/data-models/src/index.ts"
-      ],
-      "data-models": [
-        "dist/data-models"
-      ],
-      "data-models/*": [
-        "dist/data-models/*"
       ],
       "@services":[
         "libs/services/src/index.ts"

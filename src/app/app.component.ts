@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { initialState } from './components/ngrx/reducers/shop-reducers';
 
 @Component({
   selector: "app-root",
@@ -6,5 +7,8 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+  constructor(){
+    console.log("Initial State",initialState)
+  }
   title = "CodeSandbox";
 }
