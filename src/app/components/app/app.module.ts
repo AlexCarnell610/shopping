@@ -8,27 +8,26 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { EffectsModule } from "@ngrx/effects";
 import { reducers, ShopEffects, RootState, LoadShops } from "@appNgrx";
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
 
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 const COMPONENTS = [AppComponent];
 
 const environment = {
   development: true,
-  production: false,
+  production: false
 };
 
 @NgModule({
   declarations: COMPONENTS,
   imports: [
-    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([ShopEffects]),
-        environment.development ? StoreDevtoolsModule.instrument() : [],
+    environment.development ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
     {

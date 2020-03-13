@@ -15,7 +15,9 @@ export class ShopListComponent implements OnInit {
         console.error("HELLO?");
         
         this.store.select(getShops).subscribe(shops => {
-            console.error(shops);
+            console.error("LKASJDLKASD");
+            
+            console.error("DOES THIS WORK",shops);
             
         })
     }

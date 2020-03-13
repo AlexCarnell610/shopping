@@ -4,7 +4,8 @@ import { Action } from '@ngrx/store';
 export enum ShopActionsEnum {
     LOAD_SHOPS = '[Shop] Load Shops',
     LOAD_SHOPS_FAIL = '[Shop] Load Shops Fail',
-    LOAD_SHOPS_SUCCESS = '[Shop] Load Shops Success'
+    LOAD_SHOPS_SUCCESS = '[Shop] Load Shops Success',
+    UPDATE_SHOP = '[Shop] Update Shop'
 }
 
 export class LoadShops implements Action {
@@ -21,5 +22,10 @@ export class LoadShopsSuccess implements Action {
     constructor(public payload: Shop[]){}
 }
 
+export class UpdateShop implements Action {
+    readonly type = ShopActionsEnum.UPDATE_SHOP;
+    constructor(public payload: Shop){}
+}
+
 export type ShopActions = 
-LoadShops | LoadShopsFail | LoadShopsSuccess
+LoadShops | LoadShopsFail | LoadShopsSuccess | UpdateShop

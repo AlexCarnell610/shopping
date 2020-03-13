@@ -3,12 +3,16 @@ import { ShopListComponent } from './shop-list/shop-list.component';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { shopReducer } from '@appNgrx';
+import { ShopsRoutingModule } from './shops-routing.module';
 
 const COMPONENTS = [ShopListComponent]
 
 @NgModule({
     declarations: [COMPONENTS],
-    imports: [CommonModule, StoreModule.forFeature('[State]Shops', shopReducer)],
+    imports: [
+        CommonModule, 
+        ShopsRoutingModule, 
+        StoreModule.forFeature('shopState123', shopReducer)],
     providers: []
 })
 export class ShopsModule {}

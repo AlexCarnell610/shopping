@@ -15,7 +15,9 @@ export function shopReducer(
 ): ShopState {
     switch(action.type) {
         case ShopActionsEnum.LOAD_SHOPS_SUCCESS:
-            return adapter.addAll(action.payload, state)
+            return adapter.addAll(action.payload, state);
+        // case ShopActionsEnum.UPDATE_SHOP:
+        //     return adapter.updateOne(action.payload, state)
     }
 }
 
