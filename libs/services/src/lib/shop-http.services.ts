@@ -10,6 +10,9 @@ export class ShopHttpService {
     constructor(private http: HttpClient){}
 
     public getAllShops(){
-        return this.http.get<Shop[]>('assets/db.json')
+        let ok = this.http.get<Shop[]>('api/shops')
+        console.error("triggered", ok);
+        return ok;
+        
     }
 }

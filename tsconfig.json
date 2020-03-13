@@ -24,6 +24,9 @@
       ],
       "@services":[
         "libs/services/src/index.ts"
+      ],
+      "@appNgrx": [
+        "src/ngrx/index.ts"
       ]
     }
   },
