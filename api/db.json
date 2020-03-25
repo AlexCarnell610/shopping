@@ -4,6 +4,16 @@
       "id": 0,
       "name": "Tesco",
       "address": "Western Avenue"
+    },
+    {
+      "id": 1,
+      "name": "Asda",
+      "address": "Coryton"
+    },
+    {
+      "id": 2,
+      "name": "Tesco",
+      "address": "Talbot Green"
     }
   ]
 }

@@ -1,3 +1,19 @@
 div {
   text-align: center;
 }
+
+.navbar {
+  color: whitesmoke;
+}
+
+.navbar-buttons {
+  flex-grow: 50px;
+  cursor: pointer;
+}
+
+.shop-search {
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 400px;
+  display: flex;
+}

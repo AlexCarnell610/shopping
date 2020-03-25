@@ -10,9 +10,6 @@ export class ShopHttpService {
     constructor(private http: HttpClient){}
 
     public getAllShops(){
-        let ok = this.http.get<Shop[]>('api/shops')
-        console.error("triggered", ok);
-        return ok;
-        
+        return this.http.get<Shop[]>('api/shops');        
     }
 }

@@ -1,8 +1,5 @@
 import { ShopState } from './reducers/shop-reducers';
 
-
-export const SHOP_STATE = '[State]Shops';
-
 export interface RootState {
     ShopState: ShopState
 }

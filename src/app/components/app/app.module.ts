@@ -9,6 +9,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { EffectsModule } from "@ngrx/effects";
 import { reducers, ShopEffects, RootState, LoadShops } from "@appNgrx";
 import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
@@ -27,7 +28,9 @@ const environment = {
     HttpClientModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([ShopEffects]),
-    environment.development ? StoreDevtoolsModule.instrument() : []
+    environment.development ? StoreDevtoolsModule.instrument() : [],
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
