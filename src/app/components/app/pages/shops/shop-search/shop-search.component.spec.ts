@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ShopSearchComponent } from './shop-search.component';
+import { ShopSearchComponent } from "./shop-search.component";
 
-describe('ShopSearchComponent', () => {
+describe("ShopSearchComponent", () => {
   let component: ShopSearchComponent;
   let fixture: ComponentFixture<ShopSearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShopSearchComponent ]
-    })
-    .compileComponents();
+      declarations: [ShopSearchComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ShopSearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

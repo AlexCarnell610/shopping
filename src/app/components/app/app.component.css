@@ -1,3 +1,6 @@
+/* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+
+
 div {
   text-align: center;
 }
@@ -16,4 +19,23 @@ div {
   margin-left: 50px;
   width: 400px;
   display: flex;
+}
+
+.address-container {
+  margin-top: 50px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.address-children {
+  flex-basis: content;
+  margin-right: 10px;
+} 
+
+.address-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15pt;
+  margin-top: 2pt;
 }

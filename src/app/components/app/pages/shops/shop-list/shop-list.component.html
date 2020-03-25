@@ -1,10 +1,19 @@
-<div class="form-group">
-    <label for="address-select">Select which {{selectedShop}} you want</label>
-    <select class="form-control" id="address-select">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
+<div class="form-group address-container">
+  <label for="address-select" class="address-children address-label"
+    >Select which <strong>{{ selectedShop }}</strong> you want</label
+  >
+  <select
+    [formControl]="addressSelector"
+    class="form-control address-children"
+    id="address-select"
+  >
+    <option value="Default" disabled>Select One...</option>
+    <option
+      *ngFor="let selectedShop of selectedShops$ | async"
+      value="{{ selectedShop.id }}"
+      (click)="selected()"
+    >
+      {{ selectedShop.address }}</option
+    >
+  </select>
+</div>

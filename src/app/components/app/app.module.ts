@@ -9,7 +9,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { EffectsModule } from "@ngrx/effects";
 import { reducers, ShopEffects, RootState, LoadShops } from "@appNgrx";
 import { CommonModule } from "@angular/common";
-import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
@@ -17,7 +17,7 @@ const COMPONENTS = [AppComponent];
 
 const environment = {
   development: true,
-  production: false
+  production: false,
 };
 
 @NgModule({
@@ -30,7 +30,7 @@ const environment = {
     EffectsModule.forRoot([ShopEffects]),
     environment.development ? StoreDevtoolsModule.instrument() : [],
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {
@@ -41,9 +41,9 @@ const environment = {
         };
       },
       multi: true,
-      deps: [Store]
-    }
+      deps: [Store],
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

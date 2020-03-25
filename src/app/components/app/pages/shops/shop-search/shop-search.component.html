@@ -1,21 +1,28 @@
 <div class="container">
-    <div class="row">
+  <div class="row">
     <div class="input-group mb-3 shop-search">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">Search Shops</span>
-        </div>
-        <input type="text" [formControl]="shopControl" list="browsers" class="form-control"
-            aria-describedby="basic-addon3">
-        <datalist id="browsers">
-            <option *ngFor="let shop of (shops$ | async)" value="{{shop.name}}">{{shop.name}}</option>
-        </datalist>
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">Search Shops</span>
+      </div>
+      <input
+        type="text"
+        [formControl]="shopControl"
+        list="browsers"
+        class="form-control"
+        aria-describedby="basic-addon3"
+      />
+      <datalist id="browsers">
+        <option *ngFor="let shop of shops$ | async" value="{{ shop.name }}">{{
+          shop.name
+        }}</option>
+      </datalist>
 
-        <div class="input-group-append">
-            <button class="btn btn-primary" (click)="selectShop()">Select</button>
-        </div>
+      <div class="input-group-append">
+        <button class="btn btn-primary" (click)="selectShop()">Select</button>
+      </div>
     </div>
-    </div>
-    <div *ngIf="showError" class="row">
-        UH OH
-    </div>
+  </div>
+  <div *ngIf="showError" class="row">
+    UH OH
+  </div>
 </div>

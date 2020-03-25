@@ -8,8 +8,8 @@ export const selectShopState = createFeatureSelector<ShopState>("ShopState");
 export const getShops = createSelector(selectShopState, fromShops.selectAll);
 
 export const getShopsFromName = () =>
-  createSelector(getShops, (shops: Shop[], props: {shopName: string} ) => {
-      return shops.filter(shop => shop.name === props.shopName)
+  createSelector(getShops, (shops: Shop[], props: { shopName: string }) => {
+    return shops.filter((shop) => shop.name === props.shopName);
   });
 
 export const getDeDupedShops = () =>
