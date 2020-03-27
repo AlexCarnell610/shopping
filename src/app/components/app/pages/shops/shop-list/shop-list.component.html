@@ -11,9 +11,11 @@
     <option
       *ngFor="let selectedShop of selectedShops$ | async"
       value="{{ selectedShop.id }}"
-      (click)="selected()"
     >
       {{ selectedShop.address }}</option
     >
   </select>
+
+  <app-view-results [addressSelector]="addressSelector"></app-view-results>
 </div>
+

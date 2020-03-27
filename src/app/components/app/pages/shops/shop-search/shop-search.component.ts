@@ -5,6 +5,7 @@ import { Store, select } from "@ngrx/store";
 import { RootState, getShops, getDeDupedShops } from "@appNgrx";
 import { FormControl, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
+import { ShoppingListService } from 'libs/services/src/lib/shopping-list.service';
 
 @Component({
   selector: "app-shop-search",
@@ -19,15 +20,16 @@ export class ShopSearchComponent implements OnInit {
   constructor(
     private store: Store<RootState>,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private listService: ShoppingListService
   ) {}
 
   ngOnInit() {
     this.shops$ = this.store.pipe(select(getDeDupedShops()));
+    
   }
 
   public selectShop() {
-    // console.error(this.activatedRoute.parent)
     if (this.shopControl.valid) {
       this.router.navigate(["list", this.shopControl.value], {
         relativeTo: this.activatedRoute.parent,

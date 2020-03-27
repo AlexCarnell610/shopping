@@ -9,6 +9,7 @@ export class ShopHttpService {
   constructor(private http: HttpClient) {}
 
   public getAllShops() {
+    
     return this.http.get<Shop[]>("api/shops");
   }
 }

@@ -5,6 +5,8 @@ import {
   ShopActionsEnum,
   LoadShopsSuccess,
   LoadShopsFail,
+  SelectShop,
+  DeSelectShops,
 } from "../actions/shop-actions";
 import { switchMap, map, catchError } from "rxjs/operators";
 import { of } from "rxjs";
@@ -29,4 +31,5 @@ export class ShopEffects {
       );
     })
   );
+
 }

@@ -3,17 +3,39 @@
     {
       "id": 0,
       "name": "Tesco",
-      "address": "Western Avenue"
+      "address": "Western Avenue",
+      "selected": false
     },
     {
       "id": 1,
       "name": "Asda",
-      "address": "Coryton"
+      "address": "Coryton",
+      "selected": false
     },
     {
       "id": 2,
       "name": "Tesco",
-      "address": "Talbot Green"
+      "address": "Talbot Green",
+      "selected": false
     }
-  ]
+  ],
+  "items": [
+    {
+      "id": 0,
+      "name": "Yoghurt",
+      "shops": [
+        {
+          "shopId": 0,
+          "aisle": 21
+        },
+        {
+          "shopId": 2,
+          "aisle": 19
+        }
+      ]
+    }
+  ],
+  "shoppingList": {
+    "0": "yoghurt"
+  }
 }

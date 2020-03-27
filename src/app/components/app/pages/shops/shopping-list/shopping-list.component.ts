@@ -1,30 +1,43 @@
-import { Component, OnInit } from "@angular/core";
-import { FormArray, FormControl } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl } from '@angular/forms';
+import { ShoppingListService } from 'libs/services/src/lib/shopping-list.service';
+import { Router, Route } from '@angular/router';
 
 @Component({
-  selector: "app-shopping-list",
-  templateUrl: "./shopping-list.component.html",
+	selector: 'app-shopping-list',
+	templateUrl: './shopping-list.component.html'
 })
 export class ShoppingListComponent implements OnInit {
-  public buttonClicked: boolean[] = [false];
-  public itemsFormArray = new FormArray([]);
+	constructor(
+		private listService: ShoppingListService,
+		private router: Router
+	) {}
 
-  ngOnInit() {
-    this.itemsFormArray.push(new FormControl(""));
-  }
+	public buttonClicked: boolean[] = [false];
+	public itemsFormArray = new FormArray([]);
 
-  public addClicked(index) {
-    if (this.itemsFormArray.controls[index].value !== "") {
-      if (!this.buttonClicked[index]) {
-        this.buttonClicked[index] = !this.buttonClicked[index];
-        this.buttonClicked.push(false);
-        this.itemsFormArray.push(new FormControl(index));
-      } else {
-        this.buttonClicked.splice(index, 1);
-        this.itemsFormArray.removeAt(index);
-      }
-    }
-  }
+	ngOnInit() {
+		this.itemsFormArray.push(new FormControl(''));
+	}
 
-  public submit() {}
+	public addClicked(index) {
+		if (this.itemsFormArray.controls[index].value !== '') {
+			if (!this.buttonClicked[index]) {
+				this.buttonClicked[index] = !this.buttonClicked[index];
+				this.buttonClicked.push(false);
+				this.itemsFormArray.push(new FormControl(index));
+			} else {
+				this.buttonClicked.splice(index, 1);
+				this.itemsFormArray.removeAt(index);
+			}
+		}
+	}
+
+	public submit() {
+		for (let i = 0; i < this.itemsFormArray.controls.length - 1; i++) {
+			this.listService.addItem(this.itemsFormArray.controls[i].value, i);
+		}
+    this.listService.saveShoppingList();
+		this.router.navigate(['shops/search']);
+	}
 }

@@ -7,11 +7,12 @@ import { StoreModule, Store } from "@ngrx/store";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { EffectsModule } from "@ngrx/effects";
-import { reducers, ShopEffects, RootState, LoadShops } from "@appNgrx";
+import { reducers, ShopEffects, RootState, LoadShops, LoadItems } from "@appNgrx";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { ItemEffects } from 'src/ngrx/effects/items-effects';
 
 const COMPONENTS = [AppComponent];
 
@@ -27,7 +28,7 @@ const environment = {
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([ShopEffects]),
+    EffectsModule.forRoot([ShopEffects, ItemEffects]),
     environment.development ? StoreDevtoolsModule.instrument() : [],
     FormsModule,
     ReactiveFormsModule,
@@ -38,6 +39,7 @@ const environment = {
       useFactory: (store: Store<RootState>) => {
         return () => {
           store.dispatch(new LoadShops());
+          store.dispatch(new LoadItems());
         };
       },
       multi: true,

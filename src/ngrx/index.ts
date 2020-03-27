@@ -1,11 +1,12 @@
-import { ShopState } from "./reducers/shop-reducers";
+import { ShopState } from './reducers/shop-reducers';
+import { ItemState } from './reducers/item-reducers';
 
 export interface RootState {
-  ShopState: ShopState;
+	ShopState: ShopState;
+	ItemState: ItemState;
 }
 
-export * from "./actions/shop-actions";
-export * from "./effects/shop-effects";
-export * from "./reducers/index";
-export * from "./reducers/shop-reducers";
-export * from "./selectors/shop-selectors";
+export * from './actions/index';
+export * from './effects/shop-effects';
+export * from './reducers/index';
+export * from './selectors/shop-selectors';
