@@ -1,7 +1,25 @@
 <div *ngIf="(items$ | async) as items">
-    <div *ngFor="let item of items, let i = index">
-        Item:   {{item.name}} <br>
-        Aisle:  {{item.shops[shopIndex[i]].aisle}}
-        
-    </div>
+    <!-- <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of items, let i = index">
+            <strong>Item: </strong>{{item.name}} &nbsp; <strong>Aisle: </strong>{{item.shops[shopIndex[i]].aisle}}
+        </li>
+    </ul> -->
+
+    <table class="table">
+        <tbody>
+          <tr *ngFor="let item of items, let i = index">
+            <th>Item:</th>
+            <td>{{item.name}}</td>
+            <th>Aisle:</th>
+            <td>{{item.shops[shopIndex[i]].aisle}}</td>
+          </tr>
+          <tr *ngFor="let absentItem of absentItems">
+            <th>Item:</th>
+            <td>{{absentItem}}</td>
+            <th>No data</th>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
 </div>
+<add-item-modal></add-item-modal>

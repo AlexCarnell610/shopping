@@ -33,9 +33,53 @@
           "aisle": 19
         }
       ]
+    },
+    {
+      "id": 1,
+      "name": "bread",
+      "shops": [
+        {
+          "shopId": 0,
+          "aisle": 21
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "milk",
+      "shops": [
+        {
+          "shopId": 0,
+          "aisle": 21
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "butter",
+      "shops": [
+        {
+          "shopId": 0,
+          "aisle": 21
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "juice",
+      "shops": [
+        {
+          "shopId": 0,
+          "aisle": 12
+        }
+      ]
     }
   ],
   "shoppingList": {
-    "0": "yoghurt"
+    "0": "bread",
+    "1": "milk",
+    "2": "yoghurt",
+    "3": "butter",
+    "4": "juice"
   }
 }
