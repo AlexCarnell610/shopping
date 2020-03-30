@@ -3,4 +3,4 @@
  */
 
 export * from "./lib/shop.interface";
-export * from './lib/item.interface';
+export * from "./lib/item.interface";

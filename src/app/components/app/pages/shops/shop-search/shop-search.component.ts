@@ -5,7 +5,7 @@ import { Store, select } from "@ngrx/store";
 import { RootState, getShops, getDeDupedShops } from "@appNgrx";
 import { FormControl, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ShoppingListService } from 'libs/services/src/lib/shopping-list.service';
+import { ShoppingListService } from "libs/services/src/lib/shopping-list.service";
 
 @Component({
   selector: "app-shop-search",
@@ -26,7 +26,6 @@ export class ShopSearchComponent implements OnInit {
 
   ngOnInit() {
     this.shops$ = this.store.pipe(select(getDeDupedShops()));
-    
   }
 
   public selectShop() {

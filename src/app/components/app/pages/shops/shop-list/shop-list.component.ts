@@ -6,8 +6,8 @@ import { Shop } from "@data-models";
 import { Observable, combineLatest } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { FormControl } from "@angular/forms";
-import { ShopService } from 'libs/services/src/lib/shop.service';
-import { map } from 'rxjs/operators';
+import { ShopService } from "libs/services/src/lib/shop.service";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "shop-list",
@@ -19,7 +19,7 @@ export class ShopListComponent implements OnInit {
   public selectedShops$: Observable<Shop[]>;
   public addressSelector = new FormControl("Default");
   private addressSelectorValueChange$: Observable<any>;
-  private currentShopId$: Observable<number>
+  private currentShopId$: Observable<number>;
   constructor(
     private store: Store<RootState>,
     private activatedRoute: ActivatedRoute,
@@ -33,6 +33,4 @@ export class ShopListComponent implements OnInit {
     );
     //use service called currentShop, observable then use forkjoin with value changes somehow?
   }
-  
-
 }

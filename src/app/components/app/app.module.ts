@@ -7,12 +7,18 @@ import { StoreModule, Store } from "@ngrx/store";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { EffectsModule } from "@ngrx/effects";
-import { reducers, ShopEffects, RootState, LoadShops, LoadItems } from "@appNgrx";
+import {
+  reducers,
+  ShopEffects,
+  RootState,
+  LoadShops,
+  LoadItems,
+} from "@appNgrx";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { ItemEffects } from 'src/ngrx/effects/items-effects';
+import { ItemEffects } from "src/ngrx/effects/items-effects";
 
 const COMPONENTS = [AppComponent];
 

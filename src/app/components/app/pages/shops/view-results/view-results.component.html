@@ -1,7 +1,7 @@
 <div *ngIf="(items$ | async) as items">
-    <div *ngFor="let item of items">
-        {{item.name}}
+    <div *ngFor="let item of items, let i = index">
+        Item:   {{item.name}} <br>
+        Aisle:  {{item.shops[shopIndex[i]].aisle}}
         
     </div>
 </div>
-{{currentShopId}}
