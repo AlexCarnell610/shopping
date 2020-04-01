@@ -17,9 +17,9 @@
             <th>Item:</th>
             <td>{{absentItem}}</td>
             <th>No data</th>
-            <td>-</td>
+            <td><button class="btn btn-primary" (click)="openAddItemModal(absentItem)">Add Item to this Shop</button></td>
           </tr>
         </tbody>
       </table>
 </div>
-<add-item-modal></add-item-modal>
+<add-item-modal [shopId]="currentShopId" [item]="clickedItem"></add-item-modal>

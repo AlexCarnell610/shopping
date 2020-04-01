@@ -1,3 +1,21 @@
-<ngx-smart-modal #addItemModal identifier="addItemModal">
-    <p>IT WORKS!!</p>
+<ngx-smart-modal #addItemModal identifier="addItemModal" id="addItemModal">
+    <div class="modal-content" *ngIf="(shop$|async) as shop">
+        <div class="modal-header">
+            <h5 class="modal-title">Add <strong>{{item | titlecase}}</strong> to <strong>{{shop.name}} {{shop.address}}</strong></h5>
+        </div>
+        
+        <div class="modal-body">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Aisle Number</span>
+                </div>
+                <input [formControl]="aisleNumber" type="text" class="form-control" aria-describedby="basic-addon1">
+              </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="saveItem()">Save changes</button>
+        </div>
+    </div>  
 </ngx-smart-modal>

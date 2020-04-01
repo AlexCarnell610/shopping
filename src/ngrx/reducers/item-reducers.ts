@@ -17,6 +17,9 @@ export function itemReducer(
     case ItemActionsEnum.LOAD_ITEMS_SUCCESS: {
       return itemAdapter.addAll(action.payload, state);
     }
+    case ItemActionsEnum.ADD_ITEM: {
+      return itemAdapter.addOne(action.payload, state);
+    }
     default:
       return state;
   }

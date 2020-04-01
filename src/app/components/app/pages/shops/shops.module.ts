@@ -10,28 +10,29 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 import { ItemEffects } from "src/ngrx/effects/items-effects";
 import { ViewResultsComponent } from "./view-results/view-results.component";
-import { AddItemModal } from '../../modals/add-item-modal/add-item-modal';
-import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { AddItemModal } from "../../modals/add-item-modal/add-item-modal";
+import { NgxSmartModalModule, NgxSmartModalService } from "ngx-smart-modal";
+import { ModalModule } from "../../modals/modal.module";
 
 const COMPONENTS = [
   ShopListComponent,
   ShopSearchComponent,
   ShoppingListComponent,
   ViewResultsComponent,
-  AddItemModal
 ];
 
 @NgModule({
   declarations: [COMPONENTS],
   imports: [
+    ModalModule,
     CommonModule,
     ShopsRoutingModule,
     StoreModule.forFeature("ShopState", shopReducer),
     StoreModule.forFeature("ItemState", itemReducer),
     EffectsModule.forFeature([ShopEffects, ItemEffects]),
     ReactiveFormsModule,
-    NgxSmartModalModule.forChild()
+    NgxSmartModalModule.forChild(),
   ],
-  providers: [NgxSmartModalService],
+  providers: [],
 })
 export class ShopsModule {}

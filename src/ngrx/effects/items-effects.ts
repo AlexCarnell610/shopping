@@ -6,6 +6,7 @@ import {
   ItemActionsEnum,
   LoadItemsSuccess,
   LoadItemsFail,
+  AddItem,
 } from "../actions";
 import { of } from "rxjs";
 import { ItemHttpService } from "libs/services/src/lib/items-http.service";
@@ -24,6 +25,14 @@ export class ItemEffects {
         map((items) => new LoadItemsSuccess(items)),
         catchError((error) => of(new LoadItemsFail(error)))
       );
+    })
+  );
+
+  @Effect()
+  addItem$ = this.actions$.pipe(
+    ofType<AddItem>(ItemActionsEnum.ADD_ITEM),
+    switchMap((action) => {
+      return this.itemHttp.postItem(action.payload);
     })
   );
 }

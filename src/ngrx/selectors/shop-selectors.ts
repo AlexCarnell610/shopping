@@ -17,6 +17,11 @@ export const getDeDupedShops = () =>
     return myReducer(shops);
   });
 
+export const getShopById = () =>
+  createSelector(getShops, (shops: Shop[], props: { shopId: number }) => {
+    return shops.find((shop) => shop.id === props.shopId);
+  });
+
 const myReducer = (
   shopArray: Shop[],
   accumulator: Shop[] = [],

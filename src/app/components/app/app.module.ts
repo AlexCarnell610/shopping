@@ -20,8 +20,8 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { ItemEffects } from "src/ngrx/effects/items-effects";
 
-import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
-import { AddItemModal } from './modals/add-item-modal/add-item-modal';
+import { NgxSmartModalModule, NgxSmartModalService } from "ngx-smart-modal";
+import { ModalModule } from "./modals/modal.module";
 
 const COMPONENTS = [AppComponent];
 
@@ -33,6 +33,7 @@ const environment = {
 @NgModule({
   declarations: COMPONENTS,
   imports: [
+    ModalModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -44,7 +45,7 @@ const environment = {
     NgxSmartModalModule.forRoot(),
   ],
   providers: [
-        {
+    {
       provide: APP_INITIALIZER,
       useFactory: (store: Store<RootState>) => {
         return () => {

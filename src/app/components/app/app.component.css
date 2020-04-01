@@ -39,3 +39,23 @@ div {
   font-size: 15pt;
   margin-top: 2pt;
 }
+
+.card {
+  border-color: white;
+}
+
+.modal-content {
+  border-color: white;
+}
+
+.modal-header {
+  border-color: white;
+}
+
+.modal-body {
+  border-color: white;
+}
+
+.modal-footer {
+  border-color: white;
+}

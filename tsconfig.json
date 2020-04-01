@@ -22,12 +22,21 @@
       "@data-models": [
         "libs/data-models/src/index.ts"
       ],
-      "@services":[
+      "@services": [
         "libs/services/src/index.ts"
       ],
       "@appNgrx": [
         "src/ngrx/index.ts"
+      ],
+      "@enums": [
+        "libs/enums/src/index.ts"
       ]
+      // "enums": [
+      //   "dist/enums"
+      // ],
+      // "enums/*": [
+      //   "dist/enums/*"
+      // ]
     }
   },
   "angularCompilerOptions": {
