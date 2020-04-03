@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopHttpService } from 'libs/services/src/lib/shop-http.services';
 import { Store, select } from '@ngrx/store';
 import { RootState, getShopsFromName, SelectShop } from '@appNgrx';
 import { Shop } from '@data-models';
 import { Observable, combineLatest } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { ShopService } from 'libs/services/src/lib/shop.service';
+import { ShopService } from '@services';
 import { map } from 'rxjs/operators';
 
 @Component({

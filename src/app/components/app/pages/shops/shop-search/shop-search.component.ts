@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { RootState, getShops, getDeDupedShops } from '@appNgrx';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ShoppingListService } from 'libs/services/src/lib/shopping-list.service';
+import { ShoppingListService } from '@services';
 
 @Component({
   selector: 'app-shop-search',

@@ -1,0 +1,6 @@
+export * from "./lib/idservice.service"
+export * from "./lib/items-http.service"
+export * from "./lib/shop-http.services"
+export * from "./lib/shop.service"
+export * from "./lib/shopping-list-http.service"
+export * from "./lib/shopping-list.service"

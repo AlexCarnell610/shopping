@@ -1,24 +1,22 @@
 //https://blog.angular-university.io/ngrx-entity/
 
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule, Store, select } from '@ngrx/store';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { getAllItems, LoadItems, LoadShops, reducers, RootState, ShopEffects } from '@appNgrx';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers, ShopEffects, RootState, LoadShops, LoadItems } from '@appNgrx';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { select, Store, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ItemEffects } from 'src/ngrx/effects/items-effects';
-
-import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
-import { ModalModule } from './modals/modal.module';
-import { IDService } from '../../../../libs/services/src/lib/idservice.service';
-import { getAllItems } from '../../../ngrx/selectors/item-selectors';
+import { IDService } from '@services';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { map } from 'rxjs/operators';
+import { ItemEffects } from '../../../ngrx/effects/items-effects';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ModalModule } from './modals/modal.module';
+
+
 
 const COMPONENTS = [AppComponent];
 

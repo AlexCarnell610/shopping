@@ -1,25 +1,19 @@
 <div>
-    <!-- <ul class="list-group">
-        <li class="list-group-item" *ngFor="let item of items, let i = index">
-            <strong>Item: </strong>{{item.name}} &nbsp; <strong>Aisle: </strong>{{item.shops[shopIndex[i]].aisle}}
-        </li>
-    </ul> -->
-
-    <table class="table">
-        <tbody>
-          <tr *ngFor="let item of (items$ | async), let i = index">
-            <th>Item:</th>
-            <td>{{item.name}}</td>
-            <th>Aisle:</th>
-            <td>{{item.shops[shopIndex[i]].aisle}}</td>
-          </tr>
-          <tr *ngFor="let absentItem of (absentItems|async)">
-            <th>Item:</th>
-            <td>{{absentItem | titlecase}}</td>
-            <th>No data</th>
-            <td><button class="btn btn-primary" (click)="openAddItemModal(absentItem)">Add Item to this Shop</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let item of items$ | async; let i = index">
+        <th>Item:</th>
+        <td>{{ item.name | titlecase }}</td>
+        <th>Aisle:</th>
+        <td>{{ item.shops[shopIndex[i]].aisle }}</td>
+      </tr>
+      <tr *ngFor="let absentItem of absentItems | async">
+        <th>Item:</th>
+        <td>{{ absentItem | titlecase }}</td>
+        <th>No data</th>
+        <td><button class="btn btn-primary" (click)="openAddItemModal(absentItem)">Add Item to this Shop</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<add-item-modal [shopId]="currentShopId" [item]="clickedItem"></add-item-modal>
+<add-item-modal [shopId]="currentShopId" [itemString]="clickedItem" [itemObject]="clickedItemObject" [itemExists]="itemExistsInStore"></add-item-modal>

@@ -1,11 +1,12 @@
-import { Action } from '@ngrx/store';
 import { Item } from '@data-models';
+import { Update } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
 
 export enum ItemActionsEnum {
   LOAD_ITEMS = '[Item] Load Items',
   LOAD_ITEMS_FAIL = '[Item] Load Items Fail',
   LOAD_ITEMS_SUCCESS = '[Item] Load Items Success',
-  UPDATE_Item = '[Item] Update Item',
+  UPDATE_ITEM = '[Item] Update Item',
   ADD_ITEM = '[Item] Add Item',
 }
 
@@ -24,8 +25,8 @@ export class LoadItemsSuccess implements Action {
 }
 
 export class UpdateItem implements Action {
-  readonly type = ItemActionsEnum.UPDATE_Item;
-  constructor(public payload: Item) {}
+  readonly type = ItemActionsEnum.UPDATE_ITEM;
+  constructor(public payload: Update<Item>) {}
 }
 
 export class AddItem implements Action {

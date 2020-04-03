@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Shop, Item } from '@data-models';
-import { NgxSmartModalService } from 'ngx-smart-modal';
-import { Modals } from '@enums';
-import { RootState, getShopById, AddItem } from '@appNgrx';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { getAllItems } from '../../../../../ngrx/selectors/item-selectors';
-import { IDService } from '../../../../../../libs/services/src/lib/idservice.service';
+import { AddItem, getShopById, RootState, UpdateItem } from '@appNgrx';
+import { Item, Shop } from '@data-models';
+import { Modals } from '@enums';
+import { select, Store } from '@ngrx/store';
+import { IDService, ItemHttpService } from '@services';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'add-item-modal',
@@ -15,26 +14,23 @@ import { IDService } from '../../../../../../libs/services/src/lib/idservice.ser
   styleUrls: ['../../app.component.css'],
 })
 export class AddItemModal implements OnInit {
-  @Input() item: string = 'Banana';
+  @Input() itemString?: string;
+  @Input() itemObject?: Item;
+  @Input() itemExists: boolean;
   @Input() shopId: number;
   @Input() itemID: number;
   public shop$: Observable<Shop>;
   public aisleNumber = new FormControl('');
-  private itemNames: string[] = [];
 
   constructor(
     private modalService: NgxSmartModalService,
     private store: Store<RootState>,
-    private idService: IDService
+    private idService: IDService,
+    private itemService: ItemHttpService
   ) {}
 
   ngOnInit() {
     this.shop$ = this.store.pipe(select(getShopById(), { shopId: this.shopId }));
-    this.store.pipe(select(getAllItems)).subscribe((items) => {
-      items.forEach((item) => {
-        this.itemNames.push(item.name.toLowerCase());
-      });
-    });
   }
 
   public closeModal() {
@@ -42,16 +38,28 @@ export class AddItemModal implements OnInit {
   }
 
   public saveItem() {
-    if (this.itemExists(this.item)) {
-    } else {
-      this.idService
-        .getNextId$()
-        .subscribe((nextId) => {
-          console.error(nextId);
+    if (this.itemExists) {
+
+      this.store.dispatch(
+        new UpdateItem({
+          id: this.itemObject.id,
+          changes: {
+            shops: [
+              ...this.itemObject.shops,
+              {
+                shopId: this.shopId,
+                aisle: this.aisleNumber.value,
+              },
+            ],
+          },
+        })
+      );
+    } else { 
+      this.idService.getNextId().then(nextId =>
           this.store.dispatch(
             new AddItem({
               id: nextId,
-              name: this.item,
+              name: this.itemString,
               shops: [
                 {
                   shopId: this.shopId,
@@ -59,14 +67,8 @@ export class AddItemModal implements OnInit {
                 },
               ],
             })
-          );
-        })
-        .unsubscribe();
+          ));
     }
     this.modalService.get(Modals.AddItem).close();
-  }
-
-  private itemExists(itemName: string) {
-    return this.itemNames.includes(itemName.toLowerCase());
   }
 }

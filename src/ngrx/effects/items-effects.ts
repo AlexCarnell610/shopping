@@ -1,9 +1,9 @@
-import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
-import { LoadItems, ItemActionsEnum, LoadItemsSuccess, LoadItemsFail, AddItem } from '../actions';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { ItemHttpService } from '@services';
 import { of } from 'rxjs';
-import { ItemHttpService } from 'libs/services/src/lib/items-http.service';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { AddItem, ItemActionsEnum, LoadItems, LoadItemsFail, LoadItemsSuccess, UpdateItem } from '../actions';
 
 @Injectable({
   providedIn: 'root',
@@ -29,4 +29,15 @@ export class ItemEffects {
       return this.itemHttp.postItem(action.payload);
     })
   );
+
+  @Effect({dispatch: false})
+  updateItem$ = this.actions$.pipe(
+    ofType<UpdateItem>(ItemActionsEnum.UPDATE_ITEM),
+    switchMap(action => {
+      return this.itemHttp.updateItem(action.payload).pipe(
+        map((success) => of(success)),
+        catchError((error) => of(error))
+      );
+      
+    }));
 }

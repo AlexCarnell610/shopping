@@ -6,7 +6,8 @@ export interface RootState {
   ItemState: ItemState;
 }
 
-export * from './actions/index';
 export * from './effects/shop-effects';
+export * from './actions/index';
 export * from './reducers/index';
-export * from './selectors/shop-selectors';
+export * from './selectors/index';
+

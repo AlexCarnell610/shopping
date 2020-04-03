@@ -1,15 +1,18 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { RootState } from '@appNgrx';
-import { Store, select } from '@ngrx/store';
-import { getItemsByNameAndShopID, getItemsByName } from 'src/ngrx/selectors/item-selectors';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, combineLatest, of } from 'rxjs';
+import { getItemsByName, getItemsByNameAndShopID, RootState } from '@appNgrx';
 import { Item } from '@data-models';
-import { ShoppingListService } from 'libs/services/src/lib/shopping-list.service';
-import { map, filter, tap } from 'rxjs/operators';
-import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Modals } from '@enums';
+import { select, Store } from '@ngrx/store';
+import { ShoppingListService } from '@services';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { combineLatest, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
+interface ItemExistsReturn {
+  exists: boolean;
+  item?: Item;
+}
 @Component({
   selector: 'app-view-results',
   templateUrl: './view-results.component.html',
@@ -23,6 +26,9 @@ export class ViewResultsComponent implements OnInit {
   public shoppingList: string[];
   public absentItems: Observable<string[]>;
   public clickedItem: string;
+  public clickedItemObject: Item;
+  private allItems: Item[];
+  public itemExistsInStore: boolean;
 
   constructor(
     private store: Store<RootState>,
@@ -32,6 +38,14 @@ export class ViewResultsComponent implements OnInit {
 
   ngOnInit() {
     this.setUpList();
+    this.setUpAllItemsList();
+  }
+  private setUpAllItemsList() {
+    this.shoppingListService.getShoppingList().subscribe((list) => {
+      this.store.pipe(select(getItemsByName(), { itemNames: Array.from(list.values()) })).subscribe((items) => {
+        this.allItems = items;
+      });
+    });
   }
 
   private setUpList() {
@@ -59,7 +73,6 @@ export class ViewResultsComponent implements OnInit {
                 }
               }
             }
-
             this.absentItems = this.findAbsentItems(items);
             return items;
           })
@@ -69,9 +82,10 @@ export class ViewResultsComponent implements OnInit {
   private findAbsentItems(items: Item[]): Observable<string[]> {
     if (items.length !== this.shoppingListService.listLength) {
       return this.shoppingListService.getShoppingList().pipe(
-        map((list) => {
-          return Array.from(list.values()).filter(
-            (listItem) => items.findIndex((item) => item.name.toLowerCase() === listItem.toLowerCase()) === -1
+        map((shoppingList) => {
+          return Array.from(shoppingList.values()).filter(
+            (shoppingListItem) =>
+              items.findIndex((item) => item.name.toLowerCase() === shoppingListItem.toLowerCase()) === -1
           );
         })
       );
@@ -81,7 +95,28 @@ export class ViewResultsComponent implements OnInit {
   }
 
   public openAddItemModal(item: string) {
-    this.clickedItem = item;
+    let itemExists = this.itemExists(item);
+    this.itemExistsInStore = itemExists.exists;
+    if (itemExists.exists) {
+      this.clickedItemObject = itemExists.item;
+    } else {
+      this.clickedItem = item;
+    }
     this.modalService.get(Modals.AddItem).open();
+  }
+
+  private itemExists(item: string): ItemExistsReturn {
+    let returnValue: ItemExistsReturn = {
+      exists: false,
+    };
+    for (let i = 0; i < this.allItems.length; i++) {
+      if (this.allItems[i].name.toLowerCase() === item.toLowerCase()) {
+        returnValue = {
+          exists: true,
+          item: this.allItems[i],
+        };
+      }
+    }
+    return returnValue;
   }
 }

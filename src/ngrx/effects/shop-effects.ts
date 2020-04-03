@@ -10,7 +10,7 @@ import {
 } from '../actions/shop-actions';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ShopHttpService } from 'libs/services/src/lib/shop-http.services';
+import { ShopHttpService } from '@services';
 
 @Injectable({
   providedIn: 'root',

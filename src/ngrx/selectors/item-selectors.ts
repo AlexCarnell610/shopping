@@ -1,7 +1,7 @@
+import { Item } from '@data-models';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ItemState } from '../reducers';
 import * as fromItems from '../reducers/item-reducers';
-import { Item } from '@data-models';
 
 export const selectItemState = createFeatureSelector<ItemState>('ItemState');
 export const getAllItems = createSelector(selectItemState, fromItems.selectAll);
@@ -18,3 +18,8 @@ export const getItemsByNameAndShopID = () =>
 
     return itemsByID;
   });
+
+  export const getItemByName = () =>
+    createSelector(getAllItems, (items: Item[], props: {itemName: string}) => {
+      return items.find(item => item.name === props.itemName)
+    })

@@ -41,6 +41,14 @@
         {
           "shopId": 0,
           "aisle": 21
+        },
+        {
+          "shopId": 2,
+          "aisle": "12"
+        },
+        {
+          "shopId": 1,
+          "aisle": "44"
         }
       ]
     },
@@ -103,10 +111,19 @@
           "aisle": "9"
         }
       ]
+    },
+    {
+      "name": "asasdasd",
+      "shops": [
+        {
+          "shopId": 0,
+          "aisle": "213"
+        }
+      ],
+      "id": 8
     }
   ],
   "shoppingList": {
-    "0": "yoghurt",
-    "1": "bread"
+    "0": "asasdasd"
   }
 }

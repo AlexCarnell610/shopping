@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
-import { ShoppingListService } from 'libs/services/src/lib/shopping-list.service';
+import { ShoppingListService } from '@services';
 import { Router, Route } from '@angular/router';
 
 @Component({

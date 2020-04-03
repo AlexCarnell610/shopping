@@ -1,5 +1,5 @@
-import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity';
 import { Item } from '@data-models';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { ItemActions, ItemActionsEnum } from '../actions/item-actions';
 
 export interface ItemState extends EntityState<Item> {}
@@ -16,6 +16,9 @@ export function itemReducer(state = initialItemState, action: ItemActions): Item
     }
     case ItemActionsEnum.ADD_ITEM: {
       return itemAdapter.addOne(action.payload, state);
+    }
+    case ItemActionsEnum.UPDATE_ITEM: {
+      return itemAdapter.updateOne(action.payload, state)
     }
     default:
       return state;
