@@ -1,27 +1,24 @@
 //https://blog.angular-university.io/ngrx-entity/
 
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, APP_INITIALIZER } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
-import { StoreModule, Store } from "@ngrx/store";
-import { AppComponent } from "./app.component";
-import { AppRoutingModule } from "./app-routing.module";
-import { EffectsModule } from "@ngrx/effects";
-import {
-  reducers,
-  ShopEffects,
-  RootState,
-  LoadShops,
-  LoadItems,
-} from "@appNgrx";
-import { CommonModule } from "@angular/common";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreModule, Store, select } from '@ngrx/store';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers, ShopEffects, RootState, LoadShops, LoadItems } from '@appNgrx';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { ItemEffects } from "src/ngrx/effects/items-effects";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ItemEffects } from 'src/ngrx/effects/items-effects';
 
-import { NgxSmartModalModule, NgxSmartModalService } from "ngx-smart-modal";
-import { ModalModule } from "./modals/modal.module";
+import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { ModalModule } from './modals/modal.module';
+import { IDService } from '../../../../libs/services/src/lib/idservice.service';
+import { getAllItems } from '../../../ngrx/selectors/item-selectors';
+import { map } from 'rxjs/operators';
 
 const COMPONENTS = [AppComponent];
 
@@ -59,4 +56,16 @@ const environment = {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private idService: IDService, private store: Store<RootState>) {
+    this.idService.setIds(
+      this.store.pipe(select(getAllItems)).pipe(
+        map((items) =>
+          items.map((item) => {
+            return item.id;
+          })
+        )
+      )
+    );
+  }
+}

@@ -1,26 +1,22 @@
-import { Injectable } from "@angular/core";
-import { ShoppingListHttpService } from "./shopping-list-http.service";
-import { map } from "rxjs/operators";
-import { Observable, BehaviorSubject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { ShoppingListHttpService } from './shopping-list-http.service';
+import { map } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ShoppingListService {
   constructor(private listHttp: ShoppingListHttpService) {}
-  private emptyMapItem = "!!!!!"
-  private shoppingList$: BehaviorSubject<
-    Map<number, string>
-  > = new BehaviorSubject(new Map([[0,this.emptyMapItem]]));
+  private emptyMapItem = '!!!!!';
+  private shoppingList$: BehaviorSubject<Map<number, string>> = new BehaviorSubject(new Map([[0, this.emptyMapItem]]));
   private _listLength: number = 0;
 
   public getShoppingList() {
     if (this.shoppingList$.getValue().get(0) === this.emptyMapItem) {
-      
       this.getListFromHttp();
     }
 
-    
     return this.shoppingList$.asObservable();
   }
 
@@ -46,7 +42,7 @@ export class ShoppingListService {
   }
 
   get listLength() {
-    return this.shoppingList$.getValue().size
+    return this.shoppingList$.getValue().size;
   }
 
   private convertObjectToMap(object): Map<number, string> {

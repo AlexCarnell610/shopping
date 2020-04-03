@@ -1,12 +1,12 @@
-import { Action } from "@ngrx/store";
-import { Item } from "@data-models";
+import { Action } from '@ngrx/store';
+import { Item } from '@data-models';
 
 export enum ItemActionsEnum {
-  LOAD_ITEMS = "[Item] Load Items",
-  LOAD_ITEMS_FAIL = "[Item] Load Items Fail",
-  LOAD_ITEMS_SUCCESS = "[Item] Load Items Success",
-  UPDATE_Item = "[Item] Update Item",
-  ADD_ITEM = "[Item] Add Item",
+  LOAD_ITEMS = '[Item] Load Items',
+  LOAD_ITEMS_FAIL = '[Item] Load Items Fail',
+  LOAD_ITEMS_SUCCESS = '[Item] Load Items Success',
+  UPDATE_Item = '[Item] Update Item',
+  ADD_ITEM = '[Item] Add Item',
 }
 
 export class LoadItems implements Action {
@@ -33,9 +33,4 @@ export class AddItem implements Action {
   constructor(public payload: Item) {}
 }
 
-export type ItemActions =
-  | LoadItems
-  | LoadItemsFail
-  | LoadItemsSuccess
-  | UpdateItem
-  | AddItem;
+export type ItemActions = LoadItems | LoadItemsFail | LoadItemsSuccess | UpdateItem | AddItem;

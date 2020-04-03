@@ -1,3 +1,3 @@
 export enum Modals {
-  AddItem = "addItemModal",
+  AddItem = 'addItemModal',
 }

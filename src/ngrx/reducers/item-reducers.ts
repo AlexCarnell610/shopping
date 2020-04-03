@@ -1,15 +1,12 @@
-import { EntityAdapter, createEntityAdapter, EntityState } from "@ngrx/entity";
-import { Item } from "@data-models";
-import { ItemActions, ItemActionsEnum } from "../actions/item-actions";
+import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity';
+import { Item } from '@data-models';
+import { ItemActions, ItemActionsEnum } from '../actions/item-actions';
 
 export interface ItemState extends EntityState<Item> {}
 export const itemAdapter: EntityAdapter<Item> = createEntityAdapter<Item>();
 export const initialItemState: ItemState = itemAdapter.getInitialState();
 
-export function itemReducer(
-  state = initialItemState,
-  action: ItemActions
-): ItemState {
+export function itemReducer(state = initialItemState, action: ItemActions): ItemState {
   switch (action.type) {
     case ItemActionsEnum.LOAD_ITEMS: {
       return state;
@@ -25,9 +22,4 @@ export function itemReducer(
   }
 }
 
-export const {
-  selectIds,
-  selectEntities,
-  selectAll,
-  selectTotal,
-} = itemAdapter.getSelectors();
+export const { selectIds, selectEntities, selectAll, selectTotal } = itemAdapter.getSelectors();

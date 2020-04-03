@@ -1,27 +1,24 @@
-import { Component, OnInit } from "@angular/core";
-import { FormArray, FormControl } from "@angular/forms";
-import { ShoppingListService } from "libs/services/src/lib/shopping-list.service";
-import { Router, Route } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl } from '@angular/forms';
+import { ShoppingListService } from 'libs/services/src/lib/shopping-list.service';
+import { Router, Route } from '@angular/router';
 
 @Component({
-  selector: "app-shopping-list",
-  templateUrl: "./shopping-list.component.html",
+  selector: 'app-shopping-list',
+  templateUrl: './shopping-list.component.html',
 })
 export class ShoppingListComponent implements OnInit {
-  constructor(
-    private listService: ShoppingListService,
-    private router: Router
-  ) {}
+  constructor(private listService: ShoppingListService, private router: Router) {}
 
   public buttonClicked: boolean[] = [false];
   public itemsFormArray = new FormArray([]);
 
   ngOnInit() {
-    this.itemsFormArray.push(new FormControl(""));
+    this.itemsFormArray.push(new FormControl(''));
   }
 
   public addClicked(index) {
-    if (this.itemsFormArray.controls[index].value !== "") {
+    if (this.itemsFormArray.controls[index].value !== '') {
       if (!this.buttonClicked[index]) {
         this.buttonClicked[index] = !this.buttonClicked[index];
         this.buttonClicked.push(false);
@@ -38,6 +35,6 @@ export class ShoppingListComponent implements OnInit {
       this.listService.addItem(this.itemsFormArray.controls[i].value, i);
     }
     this.listService.saveShoppingList();
-    this.router.navigate(["shops/search"]);
+    this.router.navigate(['shops/search']);
   }
 }

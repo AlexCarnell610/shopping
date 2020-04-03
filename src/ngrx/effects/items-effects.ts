@@ -1,18 +1,12 @@
-import { Effect, Actions, ofType } from "@ngrx/effects";
-import { Injectable } from "@angular/core";
-import { switchMap, map, catchError } from "rxjs/operators";
-import {
-  LoadItems,
-  ItemActionsEnum,
-  LoadItemsSuccess,
-  LoadItemsFail,
-  AddItem,
-} from "../actions";
-import { of } from "rxjs";
-import { ItemHttpService } from "libs/services/src/lib/items-http.service";
+import { Effect, Actions, ofType } from '@ngrx/effects';
+import { Injectable } from '@angular/core';
+import { switchMap, map, catchError } from 'rxjs/operators';
+import { LoadItems, ItemActionsEnum, LoadItemsSuccess, LoadItemsFail, AddItem } from '../actions';
+import { of } from 'rxjs';
+import { ItemHttpService } from 'libs/services/src/lib/items-http.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ItemEffects {
   constructor(private actions$: Actions, private itemHttp: ItemHttpService) {}
@@ -28,7 +22,7 @@ export class ItemEffects {
     })
   );
 
-  @Effect()
+  @Effect({ dispatch: false })
   addItem$ = this.actions$.pipe(
     ofType<AddItem>(ItemActionsEnum.ADD_ITEM),
     switchMap((action) => {

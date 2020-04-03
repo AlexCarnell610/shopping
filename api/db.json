@@ -73,9 +73,40 @@
           "aisle": 12
         }
       ]
+    },
+    {
+      "id": 5,
+      "name": "bob",
+      "shops": [
+        {
+          "shopId": 1,
+          "aisle": "4"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "barry",
+      "shops": [
+        {
+          "shopId": 0,
+          "aisle": "44"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "gary",
+      "shops": [
+        {
+          "shopId": 0,
+          "aisle": "9"
+        }
+      ]
     }
   ],
   "shoppingList": {
-    "0": "biscuits"
+    "0": "yoghurt",
+    "1": "bread"
   }
 }

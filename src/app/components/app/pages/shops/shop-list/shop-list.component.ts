@@ -1,25 +1,26 @@
-import { Component, OnInit } from "@angular/core";
-import { ShopHttpService } from "libs/services/src/lib/shop-http.services";
-import { Store, select } from "@ngrx/store";
-import { RootState, getShopsFromName, SelectShop } from "@appNgrx";
-import { Shop } from "@data-models";
-import { Observable, combineLatest } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
-import { FormControl } from "@angular/forms";
-import { ShopService } from "libs/services/src/lib/shop.service";
-import { map } from "rxjs/operators";
+import { Component, OnInit } from '@angular/core';
+import { ShopHttpService } from 'libs/services/src/lib/shop-http.services';
+import { Store, select } from '@ngrx/store';
+import { RootState, getShopsFromName, SelectShop } from '@appNgrx';
+import { Shop } from '@data-models';
+import { Observable, combineLatest } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { ShopService } from 'libs/services/src/lib/shop.service';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: "shop-list",
-  templateUrl: "./shop-list.component.html",
-  styleUrls: ["../../../app.component.css"],
+  selector: 'shop-list',
+  templateUrl: './shop-list.component.html',
+  styleUrls: ['../../../app.component.css'],
 })
 export class ShopListComponent implements OnInit {
   public selectedShop: string;
   public selectedShops$: Observable<Shop[]>;
-  public addressSelector = new FormControl("Default");
+  public addressSelector = new FormControl('Default');
   private addressSelectorValueChange$: Observable<any>;
   private currentShopId$: Observable<number>;
+
   constructor(
     private store: Store<RootState>,
     private activatedRoute: ActivatedRoute,
@@ -27,10 +28,8 @@ export class ShopListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.selectedShop = this.activatedRoute.snapshot.paramMap.get("shop");
-    this.selectedShops$ = this.store.pipe(
-      select(getShopsFromName(), { shopName: this.selectedShop })
-    );
+    this.selectedShop = this.activatedRoute.snapshot.paramMap.get('shop');
+    this.selectedShops$ = this.store.pipe(select(getShopsFromName(), { shopName: this.selectedShop }));
     //use service called currentShop, observable then use forkjoin with value changes somehow?
   }
 }

@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ShoppingListHttpService {
   constructor(private http: HttpClient) {}
@@ -15,12 +15,12 @@ export class ShoppingListHttpService {
       postValue[key] = value;
     });
 
-    this.http.post("api/shoppingList", postValue).subscribe((resopnse) => {
-      console.warn("ListPostResponse", resopnse);
+    this.http.post('api/shoppingList', postValue).subscribe((resopnse) => {
+      console.warn('ListPostResponse', resopnse);
     });
   }
 
   public getList() {
-    return this.http.get("api/shoppingList");
+    return this.http.get('api/shoppingList');
   }
 }

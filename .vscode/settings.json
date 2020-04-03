@@ -1,7 +1,7 @@
 {
-    "prettier.endOfLine": "crlf",
-    "prettier.useTabs": true,
+    "prettier.endOfLine": "lf",
+    "prettier.useTabs": false,
     "prettier.singleQuote": true,
-    "prettier.tabWidth": 4,
-    "prettier.printWidth": 100
+    "prettier.tabWidth": 2,
+    "prettier.printWidth": 120
 }

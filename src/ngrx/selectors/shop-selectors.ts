@@ -1,9 +1,9 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { ShopState, selectAll } from "../reducers/shop-reducers";
-import * as fromShops from "../reducers/shop-reducers";
-import { Shop } from "@data-models";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { ShopState, selectAll } from '../reducers/shop-reducers';
+import * as fromShops from '../reducers/shop-reducers';
+import { Shop } from '@data-models';
 
-export const selectShopState = createFeatureSelector<ShopState>("ShopState");
+export const selectShopState = createFeatureSelector<ShopState>('ShopState');
 
 export const getShops = createSelector(selectShopState, fromShops.selectAll);
 
@@ -22,11 +22,7 @@ export const getShopById = () =>
     return shops.find((shop) => shop.id === props.shopId);
   });
 
-const myReducer = (
-  shopArray: Shop[],
-  accumulator: Shop[] = [],
-  names: string[] = []
-) => {
+const myReducer = (shopArray: Shop[], accumulator: Shop[] = [], names: string[] = []) => {
   while (shopArray.length - 1 > 0) {
     let length = shopArray.length - 1;
     let currentName = shopArray[length].name.toLowerCase();

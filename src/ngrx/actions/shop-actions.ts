@@ -1,14 +1,14 @@
-import { Shop } from "@data-models";
-import { Action } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Shop } from '@data-models';
+import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
 export enum ShopActionsEnum {
-  LOAD_SHOPS = "[Shop] Load Shops",
-  LOAD_SHOPS_FAIL = "[Shop] Load Shops Fail",
-  LOAD_SHOPS_SUCCESS = "[Shop] Load Shops Success",
-  UPDATE_SHOP = "[Shop] Update Shop",
-  SELECT_SHOP = "[Shop] Select Shop",
-  DESELECT_SHOPS = "[Shop] DeSelect Shops",
+  LOAD_SHOPS = '[Shop] Load Shops',
+  LOAD_SHOPS_FAIL = '[Shop] Load Shops Fail',
+  LOAD_SHOPS_SUCCESS = '[Shop] Load Shops Success',
+  UPDATE_SHOP = '[Shop] Update Shop',
+  SELECT_SHOP = '[Shop] Select Shop',
+  DESELECT_SHOPS = '[Shop] DeSelect Shops',
 }
 
 export class LoadShops implements Action {
@@ -40,10 +40,4 @@ export class DeSelectShops implements Action {
   constructor(public payload: Update<Shop>[]) {}
 }
 
-export type ShopActions =
-  | LoadShops
-  | LoadShopsFail
-  | LoadShopsSuccess
-  | UpdateShop
-  | SelectShop
-  | DeSelectShops;
+export type ShopActions = LoadShops | LoadShopsFail | LoadShopsSuccess | UpdateShop | SelectShop | DeSelectShops;
