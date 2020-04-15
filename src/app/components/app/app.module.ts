@@ -10,7 +10,6 @@ import { select, Store, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IDService } from '@services';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
-import { map } from 'rxjs/operators';
 import { ItemEffects } from '../../../ngrx/effects/items-effects';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -56,14 +55,9 @@ const environment = {
 })
 export class AppModule {
   constructor(private idService: IDService, private store: Store<RootState>) {
-    this.idService.setIds(
-      this.store.pipe(select(getAllItems)).pipe(
-        map((items) =>
-          items.map((item) => {
-            return item.id;
-          })
-        )
+    
+      this.store.pipe(select(getAllItems)).subscribe((items) =>
+          this.idService.setId(items.map(item => { return item.id}))
       )
-    );
   }
 }

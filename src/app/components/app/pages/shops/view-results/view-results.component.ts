@@ -1,18 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { getItemsByName, getItemsByNameAndShopID, RootState } from '@appNgrx';
-import { Item } from '@data-models';
+import { Item, ItemExistsReturn } from '@data-models';
 import { Modals } from '@enums';
 import { select, Store } from '@ngrx/store';
 import { ShoppingListService } from '@services';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { combineLatest, Observable, of } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-interface ItemExistsReturn {
-  exists: boolean;
-  item?: Item;
-}
 @Component({
   selector: 'app-view-results',
   templateUrl: './view-results.component.html',
@@ -29,7 +25,10 @@ export class ViewResultsComponent implements OnInit {
   public clickedItemObject: Item;
   private allItems: Item[];
   public itemExistsInStore: boolean;
-
+  public editItem: boolean;
+  public selectedShopIndex: number;
+  public hasAbsentItems: boolean;
+  public itemsExistsObservable: BehaviorSubject<ItemExistsReturn[]> = new BehaviorSubject([]);
   constructor(
     private store: Store<RootState>,
     private shoppingListService: ShoppingListService,
@@ -81,28 +80,57 @@ export class ViewResultsComponent implements OnInit {
   }
   private findAbsentItems(items: Item[]): Observable<string[]> {
     if (items.length !== this.shoppingListService.listLength) {
+      this.hasAbsentItems = true;
       return this.shoppingListService.getShoppingList().pipe(
         map((shoppingList) => {
-          return Array.from(shoppingList.values()).filter(
+          let absentItemsArray = Array.from(shoppingList.values()).filter(
             (shoppingListItem) =>
               items.findIndex((item) => item.name.toLowerCase() === shoppingListItem.toLowerCase()) === -1
           );
+          this.hasAbsentItems = absentItemsArray.length > 1;
+
+          return absentItemsArray;
         })
       );
     } else {
+      this.hasAbsentItems = false;
       return of([]);
     }
   }
 
-  public openAddItemModal(item: string) {
-    let itemExists = this.itemExists(item);
-    this.itemExistsInStore = itemExists.exists;
-    if (itemExists.exists) {
-      this.clickedItemObject = itemExists.item;
+  public openAddItemModal(editItem: boolean, absentItem?: string, itemToEdit?: Item, shopIndex?: number) {
+    this.editItem = editItem;
+    if (editItem) {
+      this.selectedShopIndex = shopIndex;
+      this.itemExistsInStore = true;
+      console.error('item to edit', itemToEdit);
+
+      this.clickedItemObject = itemToEdit;
     } else {
-      this.clickedItem = item;
+      let itemExists = this.itemExists(absentItem);
+      this.itemExistsInStore = itemExists.exists;
+      if (itemExists.exists) {
+        this.clickedItemObject = itemExists.item;
+      } else {
+        this.clickedItem = absentItem;
+      }
     }
     this.modalService.get(Modals.AddItem).open();
+  }
+
+  public addAllItems() {
+
+    
+    
+
+    this.absentItems.subscribe((items) => {
+     let itemExistsArray: ItemExistsReturn[] = [];
+      items.forEach((item) => {
+        itemExistsArray.push(this.itemExists(item));
+      });
+      this.itemsExistsObservable.next(itemExistsArray);
+    }).unsubscribe();
+    this.modalService.get(Modals.AddItems).open();
   }
 
   private itemExists(item: string): ItemExistsReturn {

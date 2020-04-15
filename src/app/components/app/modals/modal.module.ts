@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { AddItemModal } from './add-item-modal/add-item-modal';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddItemsModal } from './add-items-modal/add-items-modal';
 
-const MODALS = [AddItemModal];
+const MODALS = [AddItemModal, AddItemsModal];
 
 @NgModule({
   declarations: MODALS,

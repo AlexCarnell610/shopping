@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ShoppingListService } from '@services';
-import { Router, Route } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
+  styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
   constructor(private listService: ShoppingListService, private router: Router) {}

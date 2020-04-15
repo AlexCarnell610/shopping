@@ -1,19 +1,23 @@
 <div>
   <table class="table">
     <tbody>
-      <tr *ngFor="let item of items$ | async; let i = index">
+      <tr *ngFor="let item of (items$ | async); let i = index">
         <th>Item:</th>
         <td>{{ item.name | titlecase }}</td>
         <th>Aisle:</th>
         <td>{{ item.shops[shopIndex[i]].aisle }}</td>
+        <td><button class="btn btn-primary" (click)="openAddItemModal(true, null, item, shopIndex[i])">Edit Item</button></td>
       </tr>
       <tr *ngFor="let absentItem of absentItems | async">
         <th>Item:</th>
         <td>{{ absentItem | titlecase }}</td>
         <th>No data</th>
-        <td><button class="btn btn-primary" (click)="openAddItemModal(absentItem)">Add Item to this Shop</button></td>
+        <td> - </td>
+        <td><button class="btn btn-primary" (click)="openAddItemModal(false, absentItem)">Add to Shop</button></td>
       </tr>
     </tbody>
   </table>
+  <button *ngIf="hasAbsentItems" class="btn btn-primary" (click)="addAllItems()">Add All Items</button>
 </div>
-<add-item-modal [shopId]="currentShopId" [itemString]="clickedItem" [itemObject]="clickedItemObject" [itemExists]="itemExistsInStore"></add-item-modal>
+<add-item-modal [selectedShopIndex]="selectedShopIndex" [editItem]="editItem" [shopId]="currentShopId" [itemString]="clickedItem" [itemObject]="clickedItemObject" [itemExists]="itemExistsInStore"></add-item-modal>
+<add-items-modal [items$]="itemsExistsObservable"></add-items-modal>

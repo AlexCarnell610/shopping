@@ -1,0 +1,4 @@
+<ngx-smart-modal #addItemsModal identifier="addItemsModal" id="addItemsModal">
+    DO YOU WORK
+<div *ngFor="let item of (items$ | async)"> {{item.exists}}</div>
+</ngx-smart-modal>

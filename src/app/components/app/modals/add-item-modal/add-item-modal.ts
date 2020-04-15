@@ -19,6 +19,8 @@ export class AddItemModal implements OnInit {
   @Input() itemExists: boolean;
   @Input() shopId: number;
   @Input() itemID: number;
+  @Input() editItem: boolean;
+  @Input() selectedShopIndex: number;
   public shop$: Observable<Shop>;
   public aisleNumber = new FormControl('');
 
@@ -38,8 +40,9 @@ export class AddItemModal implements OnInit {
   }
 
   public saveItem() {
-    if (this.itemExists) {
-
+    switch(this.editItem){
+    case false: 
+      if (this.itemExists) {
       this.store.dispatch(
         new UpdateItem({
           id: this.itemObject.id,
@@ -54,21 +57,36 @@ export class AddItemModal implements OnInit {
           },
         })
       );
-    } else { 
-      this.idService.getNextId().then(nextId =>
-          this.store.dispatch(
-            new AddItem({
-              id: nextId,
-              name: this.itemString,
-              shops: [
-                {
-                  shopId: this.shopId,
-                  aisle: this.aisleNumber.value,
-                },
-              ],
-            })
-          ));
+    } else {
+      this.idService.getNextId().then((nextId) => {
+        this.store.dispatch(
+          new AddItem({
+            id: nextId,
+            name: this.itemString,
+            shops: [
+              {
+                shopId: this.shopId,
+                aisle: this.aisleNumber.value,
+              },
+            ],
+          })
+        );
+      });
     }
+    break;
+    case true:
+
+      let newShopsArray = this.itemObject.shops
+      newShopsArray[this.selectedShopIndex].aisle = this.aisleNumber.value;
+      this.store.dispatch(new UpdateItem({
+        id: this.itemObject.id,
+        changes:{
+          shops: newShopsArray
+        }
+      }))
+  }
+ 
+
     this.modalService.get(Modals.AddItem).close();
   }
 }

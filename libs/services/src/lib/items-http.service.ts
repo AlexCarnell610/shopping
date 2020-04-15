@@ -22,9 +22,5 @@ export class ItemHttpService {
   public updateItem(item: Update<Item>) {
    
     return this.http.patch(`${this.ITEM_ENDPOINT}/${item.id}`, item.changes)
-    // .subscribe(result => {
-    //   console.error(result);
-      
-    // })
   }
 }

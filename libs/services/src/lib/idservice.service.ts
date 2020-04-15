@@ -1,30 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IDService {
-  private ids$: Observable<number[]> = new Observable();
+  private ids: number[] = []
   private nextId;
 
-  constructor() {
-    this.ids$.pipe(map(ids => {
-      this.nextId = this.findNextId(ids);
-    }))
-  }
+  constructor() {}
 
-  public setIds(idsInp: Observable<number[]>) {
-    this.ids$ = idsInp;
-  }
-
-  public getNextId$(): Observable<number> {
-    return this.ids$.pipe(
-      map((ids) => {
-        return this.findNextId(ids);
-      })
-    );
+  public setId(idsInp: number[]) {
+    this.nextId = this.findNextId(idsInp)
   }
 
   public async getNextId(): Promise<number>{

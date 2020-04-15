@@ -1,0 +1,21 @@
+
+.margins {
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.shopping-list {
+    flex: 1;
+  }
+
+  .submit-button {
+      width: fit-content;
+      align-self: center;
+  }
+
+  .mainDiv {
+      margin: 50px auto;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+  }
